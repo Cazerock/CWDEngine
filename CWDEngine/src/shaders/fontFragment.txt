@@ -1,0 +1,35 @@
+#version 330
+
+in vec2 pass_textureCoords;
+
+out vec4 out_colour;
+
+uniform vec3 colour;
+uniform sampler2D fontAtlas;
+uniform bool isFancy; 
+
+	//Outline stuff
+	uniform float borderEdge = 0.2;
+	//Border Color
+	uniform vec3 outlineColor = vec3(1.0, 0.0, 0.4);
+	//Border offset value
+	uniform vec2 offset = vec2(0.0, 0.0);
+	const float width = 0.5;
+	const float edge = 0.1;
+	const float borderWidth = 0.6; //Overlaps the actual text behind it
+
+
+	void main(void){
+		float alpha;
+	
+		//For the higher rendering
+		vec3 overallColor;
+		float overallAlpha;
+	
+		overallAlpha = texture(fontAtlas, pass_textureCoords).a;
+		overallColor = colour;
+	
+		out_colour = vec4(overallColor, overallAlpha);
+
+
+	}
